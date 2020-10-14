@@ -1,0 +1,9 @@
+> help
+> help connect
+> show dbs
+> use animals
+> db.createCollection("domestic")
+> db.domestic.insert({name: "Perro", race: "Dalmata"})
+> db.domestic.find()
+> db.domestic.insert({name: "Gato", race: "Egipcio", color: "Rosado" })
+> db.domestic.insert({name: "Perro", race: "Caniche"})
