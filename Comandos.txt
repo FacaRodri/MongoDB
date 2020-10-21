@@ -1,9 +1,110 @@
-> help
-> help connect
-> show dbs
-> use animals
-> db.createCollection("domestic")
-> db.domestic.insert({name: "Perro", race: "Dalmata"})
-> db.domestic.find()
-> db.domestic.insert({name: "Gato", race: "Egipcio", color: "Rosado" })
-> db.domestic.insert({name: "Perro", race: "Caniche"})
+Actividad 1
+
+1.Instalar MongoDB en ambiente local.
+2.Conectarse a MongoDB vía CLI.
+3.Crear una nueva base de datos.
+	> use animals
+	> show dbs
+
+4.Crear una nueva collection.
+	> db.createCollection("domestic")
+
+5.Insertar 5 documentos en la collection con datos básicos.
+	> db.domestic.insert({name: "Perro", race: "Dalmata"})
+	> db.domestic.insert({name: "Gato", race: "Egipcio", color: "Rosado" })
+	> db.domestic.insert({name: "Perro", race: "Caniche"})
+	> db.domestic.insert({name: "Perro", race: "Chihuahua"})
+	> db.domestic.insert({name: "Perro", race: "Bull Terrier", color: "Negro"})
+
+6.Listar todos los documentos de la collection.
+	> db.domestic.find()
+
+7.Crear otras collections con documentos.
+	> db.createCollection("bichos")
+	> db.bichos.insert({name: "Araña", color: "Naraja y negro"})db.bichos.insert({name: "Araña", color: "Naraja y negro"})
+	> db.bichos.insert({name: "Hormiga", color: "Roja"})
+
+Actividad 2
+
+1.Crear una nueva base de datos de un sistema de streaming de video (ej. Netflix, Flow, Amazon Prime),
+que permita almacenar movies.
+	> use DisneyPlus
+	> db.createCollection("movies")
+
+2.Para cada movie, se debería guardar información
+como título (String), year (Number), rating (Number, entre 1.0 y 5.0),
+genre (String), description (String), actors (Array), country (String), 
+income (Number), duration (Number).
+
+3.Agregar películas usando insert(), insertOne() & insertMany().
+
+> db.movies.insert([
+    {
+        "titulo": "Coco",
+        "year": 27 de octubre de 2017,
+        "rating": 5.0,
+        "genre": "Animación/Infantil",
+        "description": "Miguel es un niño que sueña con ser músico, pero su familia se lo prohíbe porque su tatarabuelo..",
+        "actors": ["Anthony Gonzalez", " Benjamin Bratt"],
+        "country": "Mexico",
+        "income": 50000,
+        "duration": 110
+    },
+    {
+        "titulo": "El diablo a todas horas",
+        "year": 2020,
+        "rating": 5.0,
+        "genre": "Suspenso/Thriller psicológico",
+        "description": "Un joven se dedica a proteger a sus seres queridos...",
+        "actors": ["Tom Holland", "Robert Pattinson"],
+        "country": "USA",
+        "income": 12000,
+        "duration": 120
+    }
+])
+
+
+> db.movies.insertOne({
+    "titulo": "Blade: Trinity",
+    "year": 2004,
+    "rating": 4.7,
+    "genre": "Acción/Terror",
+    "description": "Blade, perseguido por el FBI, debe unir fuerzas con los cazavampiros para enfrentar...",
+    "actors": ["Wesley Snipes", "Jessica Biel"],
+    "country": "USA",
+    "income":  132000000,
+    "duration": 98
+})
+
+> db.movies.insertMany([
+    {
+        "titulo": "Deadpool",
+        "year": 2016,
+        "rating": 5,
+        "genre": " Acción/Comedia",
+        "description": "Un exmercenario quien, tras haber sido sometido a un cruel experimento...",
+        "actors": ["Ryan Reynolds", "Morena Baccarin"],
+        "country": "USA",
+        "income": 783.1,
+        "duration": 145
+    },
+    {
+        "titulo": "Deadpool 2",
+        "year": 2018,
+        "rating": 3.2,
+        "genre": "Acción/Comedia",
+        "description": "Deadpool debe proteger a Russell, un adolescente mutante, de Cable...",
+        "actors": ["Ryan Reynolds", "Morena Baccarin"],
+        "country": "USA",
+        "income": 785.8,
+        "duration": 130
+    }
+])
+
+4.Actualizar películas agregando el field highlighted = true a aquellas con rating > 4.5.
+> db.movies.updateMany(
+    {rating: {$gt: 5.0}},
+    {$set: {highlighted: true}}
+)
+
+
